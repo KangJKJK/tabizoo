@@ -14,23 +14,17 @@ echo -e "${YELLOW}시스템 업데이트 및 필수 패키지 설치 중...${NC}
 sudo apt update
 sudo apt install -y python3 python3-pip git
 
-# 2. 기존 작업 공간 삭제 (존재할 경우)
-if [ -d "~/tabizoo" ]; then
-    echo -e "${YELLOW}기존 작업 공간을 삭제 중...${NC}"
-    rm -rf ~/tabizoo
-fi
-
-# 3. 작업 공간 생성 및 이동
+# 2. 작업 공간 생성 및 이동
 echo -e "${YELLOW}작업 공간 생성 및 이동 중...${NC}"
-mkdir -p ~/tabizoo
-cd ~/tabizoo
+mkdir -p /root/tabizoo
+cd /root/tabizoo
 
-# 4. GitHub에서 코드 복사
+# 3. GitHub에서 코드 복사
 echo -e "${YELLOW}GitHub에서 코드 복사 중...${NC}"
 git clone https://github.com/KangJKJK/tabizoo-base.git .
 pip3 install -r requirements.txt
 
-# 5. 사용자에게 query_id 입력 안내
+# 4. 사용자에게 query_id 입력 안내
 echo -e "${GREEN}여러개의 Tabizoo를 구동하기 위해서는 각 query_id마다 같은 개수의 프록시가 필요합니다.${NC}"
 echo -e "${GREEN}query_id를 얻는 방법은 텔레그램 그룹방을 참고하세요.${NC}"
 echo -e "${GREEN}여러 개의 query_id를 입력할 경우 줄바꿈으로 구분하세요.${NC}"
@@ -39,7 +33,7 @@ echo -e "${YELLOW}query_id를 입력하세요:${NC}"
 query_ids=$(cat)  # 여러 줄 입력 받기
 echo "$query_ids" > data.txt
 
-# 6. 프록시 사용 여부 확인
+# 5. 프록시 사용 여부 확인
 echo -e "${YELLOW}프록시를 사용하시겠습니까? (1: 예, 2: 아니오)${NC}"
 read -p "선택: " use_proxy
 
