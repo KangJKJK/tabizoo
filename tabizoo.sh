@@ -28,10 +28,25 @@ pip3 install -r requirements.txt
 echo -e "${GREEN}여러개의 Tabizoo를 구동하기 위해서는 각 query_id마다 같은 개수의 프록시가 필요합니다.${NC}"
 echo -e "${GREEN}query_id를 얻는 방법은 텔레그램 그룹방을 참고하세요.${NC}"
 echo -e "${GREEN}여러 개의 query_id를 입력할 경우 줄바꿈으로 구분하세요.${NC}"
-echo -e "${GREEN}입력을 마치려면 Ctrl+D를 누르세요.${NC}"
+echo -e "${GREEN}입력을 마치려면 엔터를 두 번 누르세요.${NC}"
 echo -e "${YELLOW}query_id를 입력하세요:${NC}"
-query_ids=$(cat)  # 여러 줄 입력 받기
-echo "$query_ids" > data.txt
+
+query_ids=""
+while true; do
+    read -r line
+    if [[ -z "$line" ]]; then
+        # 빈 줄이 입력되면 두 번째 빈 줄을 확인
+        if [[ -z "$query_ids" ]]; then
+            break  # 두 번의 엔터가 입력되면 종료
+        fi
+    else
+        # 입력된 줄을 query_ids에 추가
+        query_ids+="$line"$'\n'
+    fi
+done
+
+# 입력된 query_ids를 data.txt에 저장
+echo -e "$query_ids" > data.txt
 
 # 5. 프록시 사용 여부 확인
 echo -e "${YELLOW}프록시를 사용하시겠습니까? (1: 예, 2: 아니오)${NC}"
