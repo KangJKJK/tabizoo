@@ -32,21 +32,12 @@ echo -e "${GREEN}입력을 마치려면 엔터를 두 번 누르세요.${NC}"
 echo -e "${YELLOW}query_id를 입력하세요:${NC}"
 
 query_ids=""
-while true; do
-    read -r line
-    if [[ -z "$line" ]]; then
-        # 빈 줄이 입력되면 두 번째 빈 줄을 확인
-        if [[ -z "$query_ids" ]]; then
-            break  # 두 번의 엔터가 입력되면 종료
-        fi
-    else
-        # 입력된 줄을 query_ids에 추가
-        query_ids+="$line"$'\n'
-    fi
+while IFS= read -r line; do
+    [[ -z "$line" ]] && break
+    query_ids+="$line"$'\n'
 done
 
-# 입력된 query_ids를 data.txt에 저장
-echo -e "$query_ids" > data.txt
+echo "$query_ids" > data.txt
 
 # 5. 프록시 사용 여부 확인
 echo -e "${YELLOW}프록시를 사용하시겠습니까? (1: 예, 2: 아니오)${NC}"
