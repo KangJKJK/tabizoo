@@ -37,7 +37,8 @@ while IFS= read -r line; do
     query_ids+="$line"$'\n'
 done
 
-echo "$query_ids" > data.txt
+# 빈 줄과 공백 제거
+echo "$query_ids" | sed '/^\s*$/d' > data.txt
 
 # 5. 프록시 사용 여부 확인
 echo -e "${YELLOW}프록시를 사용하시겠습니까? (1: 예, 2: 아니오)${NC}"
