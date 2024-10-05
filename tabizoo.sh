@@ -16,6 +16,7 @@ sudo apt install -y python3 python3-pip git
 
 # 2. 작업 공간 생성 및 이동
 echo -e "${YELLOW}작업 공간 생성 및 이동 중...${NC}"
+rm -rf /root/tabizoo  # 기존 작업 공간 삭제
 mkdir -p /root/tabizoo
 cd /root/tabizoo
 
