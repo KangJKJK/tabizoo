@@ -22,7 +22,7 @@ cd /root/tabizoo
 
 # 3. GitHub에서 코드 복사
 echo -e "${YELLOW}GitHub에서 코드 복사 중...${NC}"
-git clone https://github.com/KangJKJK/tabizoo-base.git
+git clone https://github.com/KangJKJK/tabizoo-base.git .
 pip3 install -r requirements.txt
 
 # 4. 사용자에게 query_id 입력 안내
